@@ -32,14 +32,43 @@ greet('Peter', callMe);
 
 
 
-const printNumbersForEverySecond = (n)=>{
-    for (let i = 1; i <= n; i++) {
-        setTimeout( () =>{
-          console.log(i)
-        }, i*1000)
-      }
-  }
-  printNumbersForEverySecond(7);
+
+const num = () => {
+    console.log("Print all the numbers");
+    setTimeout(() => {
+        console.log(1)
+
+        setTimeout(() => {
+            console.log(2);
+
+            setTimeout(() => {
+                console.log(3);
+
+                setTimeout(() => {
+
+                    console.log(4);
+
+                    setTimeout(() => {
+                        console.log(5);
+
+                        setTimeout(() => {
+                            console.log(6);
+
+                            setTimeout(() => {
+                                console.log(7);
+                            }, 1000);
+
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }, 1000);
+
+    }, 1000);
+}
+
+
+num();
 
 
 
@@ -56,17 +85,19 @@ const printNumbersForEverySecond = (n)=>{
 // 6
 // 7"
 
+let promFun = (delay) =>
+    new Promise((resolve) => setTimeout(resolve, delay));
 
-const wait = one => new Promise(resolve => setTimeout(resolve, one));
+for (let num = 1; num <= 7; num++)
+    promFun(num * 1000).then();
 
-let chain = Promise.resolve();
-for (let count = 1; count <=7; count++) {
-  chain = chain.then(() => {
-    console.log(count);
-    return wait(count*1000);
-  });
-}
-
+promFun(1000).then(() => console.log(1));
+promFun(2000).then(() => console.log(2));
+promFun(3000).then(() => console.log(3));
+promFun(4000).then(() => console.log(4));
+promFun(5000).then(() => console.log(5));
+promFun(6000).then(() => console.log(6));
+promFun(7000).then(() => console.log(7));
 
 
 // Ques4: Create a promise function accepting a argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed then it should go to reject state and catch the error and print Promise Rejected 
